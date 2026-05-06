@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Benson Kirugi Njeru — Web Developer & AI Specialist</title>
+<meta name="description" content="Benson Kirugi Njeru — Web Developer specialising in AI-powered websites, SEO optimisation, HMIS systems, and IT infrastructure across Kenya." />
+<meta name="keywords" content="web developer Kenya, AI website design, SEO Kenya, HMIS, ICT support, Benson Njeru" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: #1e1e1e;
+    --accent: #c8f135;
+    --accent2: #f1c135;
+    --text: #f0ede6;
+    --muted: #666;
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.25s ease;
+    mix-blend-mode: difference;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9990;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,10,0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid-line {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,241,53,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,241,53,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease both;
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s 0.1s ease both;
+  }
+  .hero-name .line2 { color: var(--accent); display: block; }
+  .hero-subtitle {
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 420px;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s 0.2s ease both;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 0.8s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0a;
+    padding: 0.85rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--text); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+  }
+  .hero-stat-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    min-width: 220px;
+    background: var(--surface);
+    animation: fadeInRight 0.8s ease both;
+  }
+  .hero-stat-card:nth-child(2) { animation-delay: 0.15s; }
+  .hero-stat-card:nth-child(3) { animation-delay: 0.3s; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    animation: fadeInUp 1s 0.6s ease both;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-body p {
+    color: rgba(240,237,230,0.7);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+  .about-body p strong { color: var(--accent); font-weight: 500; }
+  .about-details { display: flex; flex-direction: column; gap: 2rem; }
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-key {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
+    width: 120px;
+  }
+  .detail-val { font-size: 0.9rem; text-align: right; }
+  .detail-val a { color: var(--accent); text-decoration: none; }
+
+  /* SKILLS */
+  #skills {}
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .skill-card {
+    background: var(--bg);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--accent);
+    transition: height 0.3s ease;
+  }
+  .skill-card:hover { background: var(--surface); }
+  .skill-card:hover::before { height: 100%; }
+  .skill-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .skill-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .skill-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 140px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 133px;
+    top: 8px;
+    width: 14px; height: 14px;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-align: right;
+    padding-top: 0.4rem;
+    line-height: 1.5;
+  }
+  .timeline-content {}
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-company {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .timeline-list { list-style: none; }
+  .timeline-list li {
+    font-size: 0.88rem;
+    color: rgba(240,237,230,0.65);
+    padding: 0.2rem 0 0.2rem 1.2rem;
+    position: relative;
+  }
+  .timeline-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  /* EDUCATION */
+  #education {}
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .edu-card {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: var(--accent); }
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .edu-degree {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .edu-school { font-size: 0.85rem; color: var(--muted); }
+  .edu-result {
+    margin-top: 0.75rem;
+    display: inline-block;
+    background: rgba(200,241,53,0.1);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* PROJECTS */
+  #projects {}
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .project-card {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.25s;
+    background: var(--surface);
+  }
+  .project-card:hover { border-color: var(--accent); }
+  .project-thumb {
+    width: 100%;
+    height: 180px;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-thumb-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.3s ease;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  }
+  .project-card:hover .project-thumb-inner { transform: scale(1.04); }
+  .project-thumb-icon { font-size: 2.5rem; }
+  .project-live-badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    font-weight: 500;
+  }
+  .project-body { padding: 1.5rem; }
+  .project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(200,241,53,0.3);
+    padding: 0.15rem 0.5rem;
+  }
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+  .project-link {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,241,53,0.3);
+    padding-bottom: 0.15rem;
+    transition: border-color 0.2s;
+  }
+  .project-link:hover { border-color: var(--accent); }
+
+  /* TESTIMONIAL */
+  #testimonial { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .testimonial-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .testimonial-left {}
+  .testimonial-quote-mark {
+    font-family: var(--serif);
+    font-size: 8rem;
+    color: var(--accent);
+    line-height: 0.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+  }
+  .testimonial-text {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: rgba(240,237,230,0.85);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .testimonial-avatar {
+    width: 48px; height: 48px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #0a0a0a;
+    flex-shrink: 0;
+  }
+  .testimonial-author-info {}
+  .testimonial-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+  }
+  .testimonial-role {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .testimonial-right {}
+  .ref-letter {
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    background: var(--bg);
+    position: relative;
+  }
+  .ref-letter::before {
+    content: 'REFERENCE LETTER';
+    position: absolute;
+    top: -0.55rem;
+    left: 1.5rem;
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    padding: 0 0.5rem;
+  }
+  .ref-company {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-logo {
+    width: 44px; height: 44px;
+    background: #d32b1e;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .ref-company-name { font-weight: 500; font-size: 0.9rem; }
+  .ref-company-sub {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 0.1rem;
+  }
+  .ref-date {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .ref-highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .ref-highlights li {
+    font-size: 0.85rem;
+    color: rgba(240,237,230,0.7);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .ref-highlights li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.6rem;
+    top: 0.2rem;
+  }
+  .ref-highlights li strong { color: var(--text); font-weight: 500; }
+  .ref-signoff {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .ref-signoff strong { color: var(--text); font-weight: 500; display: block; margin-top: 0.3rem; }
+
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .testimonial-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  /* TESTIMONIAL TABS */
+  .t-tabs {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+    width: fit-content;
+  }
+  .t-tab {
+    background: var(--bg);
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: left;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .t-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+  .t-tab.active { background: var(--surface); }
+  .t-tab.active::after { transform: scaleX(1); }
+  .t-tab:hover { background: var(--surface); }
+  .t-tab-org {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .t-tab-sub {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .t-panel { display: none; }
+  .t-panel.active { display: block; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .contact-inner { max-width: 640px; margin: 0 auto; }
+  .contact-big {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .contact-big span { color: var(--accent); }
+  .contact-sub { color: var(--muted); margin-bottom: 3rem; }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.3; transform: scaleY(0.6); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .timeline::before { left: 0; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; padding-left: 1.5rem; }
+    .timeline-item::before { left: -7px; }
+    .timeline-date { text-align: left; }
+    .edu-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">BK<span>.</span>Njeru</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#testimonial">Testimonial</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-line"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Available for freelance &amp; contract</div>
+    <h1 class="hero-name">
+      Benson<br>
+      <span class="line2">Kirugi Njeru</span>
+    </h1>
+    <p class="hero-subtitle">
+      Web Developer · AI Website Design · SEO Optimisation · IT Infrastructure &amp; HMIS Specialist based in Kenya.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn-outline">View Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-card">
+      <div class="stat-num">7+</div>
+      <div class="stat-label">Years of ICT Experience</div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">HMIS Facilities Deployed</div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-num">Dist.</div>
+      <div class="stat-label">Diploma ICT — Top Grade</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">01 — About</div>
+      <h2 class="section-title">Discipline.<br>Order.<br>Commitment.</h2>
+      <div class="about-body">
+        <p>I'm a Kenyan ICT professional with a <strong>Diploma in ICT (Distinction)</strong> and hands-on experience across web development, AI-enhanced websites, SEO, healthcare information systems, network infrastructure, and technical support.</p>
+        <p>From designing and maintaining company websites to deploying <strong>HMIS systems across 10+ hospitals</strong> in Kenya, I thrive where technology meets real-world impact.</p>
+        <p>I believe in building digital solutions that are not only functional but <strong>intelligently optimised</strong> for search engines and AI-driven user experiences.</p>
+      </div>
+    </div>
+    <div class="about-details reveal">
+      <div class="detail-row">
+        <span class="detail-key">Location</span>
+        <span class="detail-val">P.O Box 72, Meru, Kenya</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Email</span>
+        <span class="detail-val"><a href="mailto:njerubenson01@gmail.com">njerubenson01@gmail.com</a></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Phone</span>
+        <span class="detail-val"><a href="tel:+254729888490">+254 729 888 490</a></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Languages</span>
+        <span class="detail-val">English · Swahili · Kitharaka</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Hobbies</span>
+        <span class="detail-val">Research &amp; Innovation · Chess · Motivational Content</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Driving</span>
+        <span class="detail-val">Class B — Defensive Driving Certified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — Expertise</div>
+  <h2 class="section-title">What I Do</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Web Development</div>
+      <div class="skill-desc">Designing, developing, and maintaining responsive, high-performance websites tailored to business goals.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">AI Website Design</div>
+      <div class="skill-desc">Integrating AI-powered tools and flows into web experiences — from smart chatbots to AI-generated content pipelines.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔍</div>
+      <div class="skill-name">SEO Optimisation</div>
+      <div class="skill-desc">Technical and content SEO strategies that drive organic visibility, rankings, and sustainable traffic growth.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🏥</div>
+      <div class="skill-name">HMIS Deployment</div>
+      <div class="skill-desc">End-to-end implementation of Healthcare Management Information Systems across county hospitals in Kenya.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔌</div>
+      <div class="skill-name">Network & Infrastructure</div>
+      <div class="skill-desc">LAN/WAN design, router/switch configuration, fibre splicing, wireless setups, and fault troubleshooting.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🛡️</div>
+      <div class="skill-name">Cybersecurity Foundations</div>
+      <div class="skill-desc">Google/Coursera-certified in cybersecurity fundamentals with practical application in system hardening and user safety.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">Database & Data Migration</div>
+      <div class="skill-desc">Database management, system configuration, and smooth data migration across enterprise platforms.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🎧</div>
+      <div class="skill-name">Technical Support</div>
+      <div class="skill-desc">Remote and on-site troubleshooting for hardware, software, biometrics, and enterprise systems with helpdesk experience.</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">ICT Policy & Management</div>
+      <div class="skill-desc">Formulating, implementing, and monitoring ICT policies, inventory, and procurement in government and private sectors.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">03 — Experience</div>
+  <h2 class="section-title">Work History</h2>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Jan 2024<br>— Oct 2024</div>
+      <div class="timeline-content">
+        <div class="timeline-role">Customer Support Staff</div>
+        <div class="timeline-company">Softcom Business Solution Limited</div>
+        <ul class="timeline-list">
+          <li>Designed, developed and maintained the company website.</li>
+          <li>Implemented KISE Hospital Management Information System.</li>
+          <li>Deployed Caresoft HMIS across 10 county hospitals including Chuka Referral, Mathari Teaching, and Busia County Referral.</li>
+          <li>Handled data migration, database management, and system configuration.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Feb 2024<br>— May 2024</div>
+      <div class="timeline-content">
+        <div class="timeline-role">ICT Volunteer</div>
+        <div class="timeline-company">Tharaka Nithi County Government</div>
+        <ul class="timeline-list">
+          <li>Maintained network infrastructure at County Headquarters.</li>
+          <li>Repaired ICT equipment and provided user support and training.</li>
+          <li>Recorded complaints through toll-free helpdesk.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Apr 2022<br>— Apr 2023</div>
+      <div class="timeline-content">
+        <div class="timeline-role">ICT Technician</div>
+        <div class="timeline-company">Kenya Rural Roads Authority</div>
+        <ul class="timeline-list">
+          <li>Network design and troubleshooting.</li>
+          <li>Provided technical support to staff and managed IT stock inventory.</li>
+          <li>Installed and configured newly purchased ICT equipment.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Mar 2021<br>— Oct 2021</div>
+      <div class="timeline-content">
+        <div class="timeline-role">Technical Support Specialist</div>
+        <div class="timeline-company">Lustaane Enterprises</div>
+        <ul class="timeline-list">
+          <li>Handled inbound/outbound customer calls and internet-based support.</li>
+          <li>Installed and configured wireless internet connections.</li>
+          <li>Installed school biometrics and configured school management systems.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Sep 2019<br>— Dec 2019</div>
+      <div class="timeline-content">
+        <div class="timeline-role">IT Attaché</div>
+        <div class="timeline-company">Marimanti Level IV Hospital</div>
+        <ul class="timeline-list">
+          <li>HMIS deployment, configuration, and maintenance.</li>
+          <li>LAN maintenance, wireless setups (lite beam, power beam, fibre splicing).</li>
+          <li>Hardware repair, data entry, and staff training.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Sep 2018<br>— Nov 2018</div>
+      <div class="timeline-content">
+        <div class="timeline-role">IT Intern</div>
+        <div class="timeline-company">Tharaka Nithi County Headquarters</div>
+        <ul class="timeline-list">
+          <li>Server administration — domain, mail server, file sharing, Windows Server.</li>
+          <li>Configured routers, switches, access points, VPN and proxy servers.</li>
+          <li>Trained employees on biometric management systems.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">04 — Projects</div>
+  <h2 class="section-title">Live Websites Built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="project-thumb-inner">
+          <span class="project-thumb-icon">🏥</span>
+          softcom.co.ke
+        </div>
+        <span class="project-live-badge">Live</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">WordPress</span>
+          <span class="project-tag">Healthcare</span>
+          <span class="project-tag">SEO</span>
+        </div>
+        <div class="project-name">Softcom Business Solutions</div>
+        <p class="project-desc">Designed, developed, and maintained the corporate website for Softcom — a leading Kenyan health IT company offering HMIS solutions. Managed all updates and performance optimisation.</p>
+        <a href="https://softcom.co.ke" target="_blank" rel="noopener" class="project-link">Visit softcom.co.ke →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="project-thumb-inner">
+          <span class="project-thumb-icon">🌍</span>
+          sapad.org
+        </div>
+        <span class="project-live-badge">Live</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">WordPress</span>
+          <span class="project-tag">NGO / Non-profit</span>
+          <span class="project-tag">SEO</span>
+        </div>
+        <div class="project-name">SAPAD Organisation</div>
+        <p class="project-desc">Built and maintained the website for SAPAD, a non-profit organisation. Implemented SEO best practices and ensured clean, accessible UI for diverse audiences.</p>
+        <a href="https://sapad.org" target="_blank" rel="noopener" class="project-link">Visit sapad.org →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="project-thumb-inner">
+          <span class="project-thumb-icon">➕</span>
+          More Projects
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Web Dev</span>
+          <span class="project-tag">AI Design</span>
+          <span class="project-tag">SEO</span>
+        </div>
+        <div class="project-name">Additional Client Websites</div>
+        <p class="project-desc">Portfolio of additional WordPress and custom-coded websites for clients across Kenya — optimised for speed, mobile-first design, and search engine visibility. Get in touch for the full portfolio.</p>
+        <a href="#contact" class="project-link">Request Full Portfolio →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+
+
+<section id="education">
+  <div class="section-label">05 — Education &amp; Certifications</div>
+  <h2 class="section-title">Qualifications</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">2017 — 2020</div>
+      <div class="edu-degree">Diploma in ICT (Modules I–III)</div>
+      <div class="edu-school">Kitale National Polytechnic</div>
+      <span class="edu-result">🏅 Distinction (Module III)</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">July 2023</div>
+      <div class="edu-degree">Foundation to Cybersecurity</div>
+      <div class="edu-school">Coursera / Google</div>
+      <span class="edu-result">✅ Certified</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">August 2025</div>
+      <div class="edu-degree">NYS Soft Skills Training</div>
+      <div class="edu-school">BrighterMonday</div>
+      <span class="edu-result">✅ Certified</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">Feb 2020</div>
+      <div class="edu-degree">TVET Research Paper Presentation &amp; Robotics</div>
+      <div class="edu-school">Rift Valley Regional TVET Fair</div>
+      <span class="edu-result">🤖 Remote Health Monitoring System (C++ / Arduino)</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">May 2021</div>
+      <div class="edu-degree">Defensive Driving — Class B</div>
+      <div class="edu-school">Life Safety Training Centre</div>
+      <span class="edu-result">✅ Certified</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">2011 — 2014</div>
+      <div class="edu-degree">Kenya Certificate of Secondary Education</div>
+      <div class="edu-school">Materi Boys High School</div>
+      <span class="edu-result">Grade: C+</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="section-label">06 — Testimonials</div>
+  <h2 class="section-title">What They Say</h2>
+
+  <!-- Tabs -->
+  <div class="t-tabs">
+    <button class="t-tab active" onclick="switchTab(0)">
+      <span class="t-tab-org">Softcom Business Solutions</span>
+      <span class="t-tab-sub">Edward Matu · CEO</span>
+    </button>
+    <button class="t-tab" onclick="switchTab(1)">
+      <span class="t-tab-org">Tharaka Nithi County Govt.</span>
+      <span class="t-tab-sub">Muigai Samuel · ICT Director</span>
+    </button>
+  </div>
+
+  <!-- Panel 1 -->
+  <div class="t-panel active" id="t-panel-0">
+    <div class="testimonial-inner">
+      <div class="testimonial-left">
+        <div class="testimonial-quote-mark">"</div>
+        <p class="testimonial-text">Mr. Benson has shown a remarkable ability to create websites, support customers, manage client relationships and solve problems effectively. He would be an asset to any organization.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">EM</div>
+          <div class="testimonial-author-info">
+            <div class="testimonial-name">Edward Matu</div>
+            <div class="testimonial-role">CEO — Softcom Business Solutions Ltd · Oct 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-right">
+        <div class="ref-letter">
+          <div class="ref-company">
+            <div class="ref-logo">SC</div>
+            <div>
+              <div class="ref-company-name">Softcom Business Solutions Ltd</div>
+              <div class="ref-company-sub">Nairobi | Valley View Plaza, 6th Floor</div>
+            </div>
+          </div>
+          <div class="ref-date">28th October 2024 — Official Reference Letter</div>
+          <ul class="ref-highlights">
+            <li>Confirmed professional engagement as <strong>Customer Support Staff / Intern</strong>.</li>
+            <li>Instrumental in the implementation of <strong>KISE HMIS System</strong> and <strong>Parklands Hospital HMIS</strong>.</li>
+            <li>Pivotal in supporting <strong>Tharaka Nithi Hospitals HMIS</strong> deployment.</li>
+            <li>Demonstrated ability to <strong>create and maintain websites</strong> for corporate clients.</li>
+            <li>Praised for <strong>professionalism, positive attitude, and commitment</strong> to all tasks.</li>
+            <li>Recommended without hesitation for any future opportunity.</li>
+          </ul>
+          <div class="ref-signoff">Signed by<strong>Edward Matu, CEO — Softcom Business Solutions Ltd</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 2 -->
+  <div class="t-panel" id="t-panel-1">
+    <div class="testimonial-inner">
+      <div class="testimonial-left">
+        <div class="testimonial-quote-mark">"</div>
+        <p class="testimonial-text">Njeru Benson Kirugi proved himself as one of the most dedicated and enthusiastic attachees I have worked with. He has excellent communication and customer service skills with a profound ability to give ICT support in a fast-paced environment.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:var(--accent2);color:#0a0a0a;">MS</div>
+          <div class="testimonial-author-info">
+            <div class="testimonial-name">Muigai Samuel</div>
+            <div class="testimonial-role">ICT &amp; Energy Director — Tharaka Nithi County Govt. · Jan 2020</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-right">
+        <div class="ref-letter">
+          <div class="ref-company">
+            <div class="ref-logo" style="background:#1a3c6e;">TN</div>
+            <div>
+              <div class="ref-company-name">County Government of Tharaka Nithi</div>
+              <div class="ref-company-sub">Dept. of ICT | P.O. Box 10, Kathwana</div>
+            </div>
+          </div>
+          <div class="ref-date">7th January 2020 — Official Recommendation Letter</div>
+          <ul class="ref-highlights">
+            <li>Observed daily from <strong>August 29th – December 6th 2019</strong> at Marimanti Hospital.</li>
+            <li>Deployed as intern with full responsibility for <strong>HMIS deployment, configuration &amp; maintenance</strong>.</li>
+            <li>Handled <strong>LAN maintenance and network fault troubleshooting</strong>.</li>
+            <li>Managed <strong>ICT equipment inventory</strong> — hardware, software, supply &amp; functionality.</li>
+            <li>Performed <strong>preventive maintenance</strong> of all ICT hardware in the hospital.</li>
+            <li>Described as <strong>"ideal candidate"</strong> — praised for organisational skills and professionalism.</li>
+          </ul>
+          <div class="ref-signoff">Signed by<strong>Muigai Samuel, ICT &amp; Energy Director — Tharaka Nithi County Government</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label">07 — Contact</div>
+    <h2 class="contact-big">Let's Build<br><span>Something.</span></h2>
+    <p class="contact-sub">Open to freelance projects, contract roles, and full-time opportunities across web development, AI design, and ICT.</p>
+    <div class="contact-links">
+      <a href="mailto:njerubenson01@gmail.com" class="contact-link">
+        <span>✉</span> njerubenson01@gmail.com
+      </a>
+      <a href="tel:+254729888490" class="contact-link">
+        <span>☎</span> +254 729 888 490
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Benson Kirugi Njeru — All rights reserved</p>
+  <p>Web Dev · AI Design · SEO · Kenya</p>
+</footer>
+
+<script>
+  // Testimonial tabs
+  function switchTab(index) {
+    document.querySelectorAll('.t-tab').forEach((t,i) => t.classList.toggle('active', i===index));
+    document.querySelectorAll('.t-panel').forEach((p,i) => p.classList.toggle('active', i===index));
+  }
+
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 6 + 'px';
+    cursor.style.top  = my - 6 + 'px';
+  });
+  function animRing() {
+    rx += (mx - rx - 20) * 0.12;
+    ry += (my - ry - 20) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i % 3) * 0.1 + 's';
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => io.observe(r));
+</script>
+</body>
+</html>
